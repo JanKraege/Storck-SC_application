@@ -1,67 +1,6332 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Jan Kraege | Supply Chain Application</title>
+<title>Jan Kraege | Supply Chain Application</title>
 
-  <style>
-    :root {
-      --navy: #16283b;
-      --navy-2: #23435f;
-      --accent: #a33a35;
-      --accent-light: #f4e9e7;
-      --cream: #f5f1e9;
-      --light: #f6f8fa;
-      --white: #ffffff;
-      --text: #1c2732;
-      --muted: #65717c;
-      --border: #dce2e7;
+<style>
 
-      --green: #35745a;
-      --yellow: #b58524;
-      --red: #b34843;
+:root{
+  --red:#9c2f2f;
+  --red-dark:#642022;
+  --red-soft:#f5e8e5;
 
-      --shadow: 0 12px 34px rgba(22, 40, 59, 0.08);
+  --cream:#fff8ec;
+  --cream-2:#f6eddd;
+
+  --gold:#c99a42;
+  --gold-soft:#ead7ad;
+
+  --cocoa:#382b29;
+  --navy:#243443;
+
+  --text:#282423;
+  --muted:#746b66;
+
+  --white:#ffffff;
+  --light:#faf8f4;
+  --border:#e3ddd3;
+
+  --green:#3d745a;
+  --yellow:#b58429;
+  --danger:#a94442;
+
+  --shadow:
+    0 16px 42px rgba(76,48,36,.10);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:#fcfbf8;
+  color:var(--text);
+
+  line-height:1.5;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  font-family:inherit;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:0 auto;
+}
+
+
+/* ==========================================================
+   NAVIGATION
+========================================================== */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  background:
+    rgba(71,29,30,.97);
+
+  backdrop-filter:
+    blur(12px);
+
+  color:white;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.10);
+}
+
+.nav-inner{
+  min-height:68px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:24px;
+}
+
+.brand{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.05em;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.nav-links{
+  display:flex;
+  gap:22px;
+
+  font-size:13px;
+}
+
+.nav-links a{
+  opacity:.82;
+}
+
+.nav-links a:hover{
+  opacity:1;
+}
+
+.language-switch{
+  display:flex;
+
+  border:
+    1px solid rgba(255,255,255,.28);
+
+  border-radius:999px;
+
+  overflow:hidden;
+}
+
+.lang-btn{
+  border:0;
+
+  background:transparent;
+  color:white;
+
+  padding:8px 11px;
+
+  cursor:pointer;
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.lang-btn.active{
+  background:white;
+  color:var(--red-dark);
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero{
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 78% 28%,
+      rgba(231,194,125,.22),
+      transparent 26%
+    ),
+    linear-gradient(
+      135deg,
+      #592123 0%,
+      #7e2a2d 55%,
+      #9c443c 100%
+    );
+
+  color:white;
+}
+
+.hero-grid{
+  min-height:650px;
+
+  padding:95px 0;
+
+  display:grid;
+  grid-template-columns:
+    1.18fr .82fr;
+
+  align-items:center;
+  gap:65px;
+
+  position:relative;
+  z-index:3;
+}
+
+.hero::after{
+  content:"";
+
+  position:absolute;
+
+  right:-140px;
+  bottom:-230px;
+
+  width:580px;
+  height:580px;
+
+  border-radius:50%;
+
+  border:
+    1px solid rgba(255,255,255,.10);
+
+  box-shadow:
+    0 0 0 70px rgba(255,255,255,.018),
+    0 0 0 140px rgba(255,255,255,.012);
+}
+
+
+/* candy-wrapper decorative lines */
+
+.wrapper-lines{
+  position:absolute;
+
+  right:5%;
+  top:12%;
+
+  width:290px;
+  height:140px;
+
+  opacity:.18;
+
+  transform:rotate(-8deg);
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 16px,
+      rgba(255,255,255,.35) 17px,
+      rgba(255,255,255,.35) 19px
+    );
+
+  border-radius:24px;
+}
+
+.eyebrow{
+  margin-bottom:18px;
+
+  color:#ecd7be;
+
+  font-size:11px;
+  font-weight:900;
+
+  text-transform:uppercase;
+  letter-spacing:.16em;
+}
+
+h1{
+  margin:0 0 23px;
+
+  font-size:
+    clamp(46px,7vw,78px);
+
+  line-height:1;
+
+  letter-spacing:-.045em;
+}
+
+.hero-subtitle{
+  font-size:
+    clamp(23px,3vw,34px);
+
+  font-weight:700;
+
+  color:#f6e7d6;
+
+  margin-bottom:18px;
+}
+
+.hero-text{
+  max-width:690px;
+
+  color:#eadfd6;
+
+  font-size:18px;
+
+  margin-bottom:31px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:11px;
+}
+
+.btn{
+  min-height:44px;
+
+  padding:12px 20px;
+
+  border:0;
+  border-radius:9px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  font-size:13px;
+  font-weight:900;
+
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:
+    translateY(-2px);
+}
+
+.btn-primary{
+  background:var(--cream);
+  color:var(--red-dark);
+}
+
+.btn-secondary{
+  border:
+    1px solid rgba(255,255,255,.30);
+
+  color:white;
+
+  background:
+    rgba(255,255,255,.07);
+}
+
+
+/* HERO PROFILE CARD */
+
+.profile-wrapper{
+  position:relative;
+}
+
+.profile-wrapper::before{
+  content:"";
+
+  position:absolute;
+
+  left:-18px;
+  top:28px;
+
+  width:36px;
+  height:calc(100% - 56px);
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--gold),
+      var(--gold) 8px,
+      #e3bf76 8px,
+      #e3bf76 16px
+    );
+
+  clip-path:
+    polygon(
+      100% 0,
+      35% 5%,
+      100% 10%,
+      35% 15%,
+      100% 20%,
+      35% 25%,
+      100% 30%,
+      35% 35%,
+      100% 40%,
+      35% 45%,
+      100% 50%,
+      35% 55%,
+      100% 60%,
+      35% 65%,
+      100% 70%,
+      35% 75%,
+      100% 80%,
+      35% 85%,
+      100% 90%,
+      35% 95%,
+      100% 100%
+    );
+}
+
+.hero-card{
+  position:relative;
+
+  padding:29px;
+
+  border-radius:22px;
+
+  border:
+    1px solid rgba(255,255,255,.18);
+
+  background:
+    rgba(255,248,236,.10);
+
+  backdrop-filter:
+    blur(14px);
+
+  box-shadow:
+    0 18px 50px
+    rgba(45,18,18,.18);
+}
+
+.hero-card-label{
+  color:#ead3b8;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:.14em;
+  text-transform:uppercase;
+
+  margin-bottom:18px;
+}
+
+.hero-stat{
+  padding:15px 0;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.12);
+}
+
+.hero-stat:last-child{
+  border-bottom:0;
+}
+
+.hero-stat strong{
+  display:block;
+
+  margin-bottom:3px;
+
+  font-size:15px;
+}
+
+.hero-stat span{
+  color:#e6d9d0;
+
+  font-size:12px;
+}
+
+
+/* ==========================================================
+   GENERAL SECTIONS
+========================================================== */
+
+section{
+  padding:88px 0;
+}
+
+.section-label{
+  margin-bottom:11px;
+
+  color:var(--red);
+
+  font-size:11px;
+  font-weight:900;
+
+  text-transform:uppercase;
+  letter-spacing:.15em;
+}
+
+h2{
+  margin:0 0 17px;
+
+  color:var(--cocoa);
+
+  font-size:
+    clamp(31px,4vw,47px);
+
+  line-height:1.08;
+
+  letter-spacing:-.025em;
+}
+
+.section-intro{
+  max-width:790px;
+
+  margin:0 0 42px;
+
+  color:var(--muted);
+
+  font-size:17px;
+}
+
+.card{
+  padding:27px;
+
+  background:white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:17px;
+
+  box-shadow:var(--shadow);
+}
+
+.card h3{
+  margin-top:0;
+  color:var(--cocoa);
+}
+
+
+/* ==========================================================
+   ABOUT
+========================================================== */
+
+.about-grid{
+  display:grid;
+
+  grid-template-columns:
+    1.12fr .88fr;
+
+  gap:24px;
+}
+
+.about-copy{
+  color:var(--muted);
+
+  font-size:15px;
+}
+
+.pill-row{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:22px;
+}
+
+.pill{
+  padding:8px 11px;
+
+  border-radius:999px;
+
+  background:var(--red-soft);
+
+  color:var(--red-dark);
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.quote-card{
+  color:white;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--cocoa),
+      #594039
+    );
+
+  border:0;
+}
+
+.quote-card h3{
+  color:white;
+}
+
+.quote-card p{
+  color:#e7ddd6;
+}
+
+.quote{
+  margin-top:25px;
+
+  color:#fff2df;
+
+  font-size:20px;
+  font-weight:800;
+
+  line-height:1.42;
+}
+
+
+/* ==========================================================
+   JOURNEY
+========================================================== */
+
+#journey{
+  background:var(--cream);
+}
+
+.timeline{
+  display:grid;
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:15px;
+}
+
+.timeline-card{
+  position:relative;
+
+  overflow:hidden;
+
+  padding:24px;
+
+  background:white;
+
+  border:
+    1px solid #eadfcd;
+
+  border-radius:16px;
+}
+
+.timeline-card::before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:0;
+
+  width:100%;
+  height:5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--red),
+      var(--gold)
+    );
+}
+
+.timeline-year{
+  margin-bottom:12px;
+
+  color:var(--red);
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.timeline-card h3{
+  margin:0 0 9px;
+
+  color:var(--cocoa);
+
+  font-size:17px;
+}
+
+.timeline-card p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+
+/* ==========================================================
+   WHY STORCK
+========================================================== */
+
+#why{
+  background:#fffdfa;
+}
+
+.why-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:16px;
+}
+
+.function-card{
+  position:relative;
+
+  overflow:hidden;
+
+  min-height:215px;
+}
+
+.function-card::after{
+  content:"";
+
+  position:absolute;
+
+  right:-35px;
+  bottom:-35px;
+
+  width:100px;
+  height:100px;
+
+  border-radius:50%;
+
+  background:
+    var(--red-soft);
+}
+
+.function-number{
+  width:39px;
+  height:39px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:var(--red-dark);
+  color:white;
+
+  font-size:11px;
+  font-weight:900;
+
+  margin-bottom:19px;
+}
+
+.function-card p{
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+
+/* ==========================================================
+   E2E FLOW
+========================================================== */
+
+.flow-section{
+  margin-top:52px;
+}
+
+.flow-shell{
+  padding:30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff9ef,
+      #ffffff
+    );
+
+  border:
+    1px solid #eadfcd;
+
+  border-radius:20px;
+
+  box-shadow:
+    0 14px 35px
+    rgba(89,47,33,.07);
+}
+
+.flow-title{
+  margin-bottom:23px;
+
+  color:var(--cocoa);
+
+  font-size:17px;
+  font-weight:900;
+}
+
+.supply-flow{
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap:11px;
+}
+
+.flow-node{
+  position:relative;
+
+  padding:20px 12px;
+
+  background:white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:12px;
+
+  text-align:center;
+}
+
+.flow-node:not(:last-child)::after{
+  content:"→";
+
+  position:absolute;
+
+  right:-13px;
+  top:50%;
+
+  transform:
+    translate(50%,-50%);
+
+  z-index:4;
+
+  color:var(--red);
+
+  font-weight:900;
+}
+
+.flow-node-title{
+  color:var(--cocoa);
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.flow-node-kpi{
+  margin-top:7px;
+
+  color:var(--red);
+
+  font-size:19px;
+  font-weight:900;
+}
+
+.flow-node-label{
+  margin-top:2px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+
+/* ==========================================================
+   SIMULATOR
+========================================================== */
+
+#lab{
+  background:
+    linear-gradient(
+      180deg,
+      #f8f3ea 0%,
+      #f3eee6 100%
+    );
+}
+
+.lab-wrapper{
+  overflow:hidden;
+
+  background:white;
+
+  border:
+    1px solid #ded4c5;
+
+  border-radius:22px;
+
+  box-shadow:
+    0 24px 60px
+    rgba(61,39,28,.13);
+}
+
+.lab-header{
+  padding:30px;
+
+  background:
+    linear-gradient(
+      120deg,
+      var(--red-dark),
+      #8b3132
+    );
+
+  color:white;
+}
+
+.lab-header-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:25px;
+}
+
+.lab-header h3{
+  margin:0 0 7px;
+
+  font-size:24px;
+}
+
+.lab-header p{
+  max-width:780px;
+
+  margin:0;
+
+  color:#eadcd4;
+
+  font-size:13px;
+}
+
+.data-badge{
+  padding:9px 12px;
+
+  border:
+    1px solid rgba(255,255,255,.25);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.08);
+
+  white-space:nowrap;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+
+/* PRESETS */
+
+.preset-bar{
+  padding:16px 28px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  align-items:center;
+
+  background:#fff8ee;
+
+  border-bottom:
+    1px solid #eadfcd;
+}
+
+.preset-label{
+  margin-right:7px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.preset-btn{
+  padding:8px 11px;
+
+  border:
+    1px solid #dacdbb;
+
+  border-radius:8px;
+
+  background:white;
+
+  color:var(--cocoa);
+
+  font-size:10px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.preset-btn:hover{
+  background:var(--red-soft);
+}
+
+
+/* LAB GRID */
+
+.lab-grid{
+  display:grid;
+
+  grid-template-columns:
+    400px 1fr;
+}
+
+
+/* ==========================================================
+   CONTROL SIDE
+========================================================== */
+
+.control-side{
+  background:#fcfaf6;
+
+  border-right:
+    1px solid var(--border);
+}
+
+.module-tabs{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+.module-tab{
+  min-height:54px;
+
+  border:0;
+
+  background:transparent;
+
+  color:var(--muted);
+
+  cursor:pointer;
+
+  font-size:11px;
+  font-weight:900;
+
+  border-bottom:
+    3px solid transparent;
+}
+
+.module-tab.active{
+  color:var(--red);
+
+  background:white;
+
+  border-bottom-color:
+    var(--red);
+}
+
+.module-panel{
+  display:none;
+
+  padding:27px;
+}
+
+.module-panel.active{
+  display:block;
+}
+
+.module-intro{
+  padding-bottom:20px;
+  margin-bottom:22px;
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+.module-intro h4{
+  margin:0 0 5px;
+
+  color:var(--cocoa);
+}
+
+.module-intro p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+
+/* slider controls */
+
+.control{
+  margin-bottom:23px;
+}
+
+.control-head{
+  display:flex;
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:7px;
+
+  font-size:12px;
+}
+
+.control-head strong{
+  color:var(--cocoa);
+}
+
+.control-value{
+  color:var(--red);
+
+  font-weight:900;
+}
+
+.control-help{
+  margin-top:4px;
+
+  color:#998d84;
+
+  font-size:9px;
+}
+
+input[type="range"]{
+  width:100%;
+
+  accent-color:
+    var(--red);
+}
+
+
+/* ==========================================================
+   DASHBOARD
+========================================================== */
+
+.dashboard{
+  padding:28px;
+}
+
+.dashboard-top{
+  display:grid;
+
+  grid-template-columns:
+    .72fr 1.28fr;
+
+  gap:15px;
+
+  margin-bottom:16px;
+}
+
+
+/* SCORE */
+
+.score-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  padding:24px;
+
+  color:white;
+
+  border-radius:15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--cocoa),
+      #5c4540
+    );
+}
+
+.score-label{
+  color:#ddcec5;
+
+  font-size:10px;
+  font-weight:800;
+
+  text-transform:uppercase;
+  letter-spacing:.10em;
+}
+
+.score-value{
+  margin:6px 0;
+
+  font-size:48px;
+  line-height:1;
+
+  font-weight:900;
+}
+
+.score-sub{
+  color:#eaded7;
+
+  font-size:11px;
+}
+
+
+/* BOTTLENECK */
+
+.bottleneck-card{
+  padding:22px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:15px;
+
+  background:#fffdf9;
+}
+
+.bottleneck-label{
+  color:var(--red);
+
+  font-size:10px;
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:.10em;
+}
+
+.bottleneck-title{
+  margin-top:8px;
+
+  color:var(--cocoa);
+
+  font-size:20px;
+  font-weight:900;
+}
+
+.bottleneck-text{
+  margin-top:7px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+
+/* KPI GRID */
+
+.kpi-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:12px;
+}
+
+.kpi{
+  padding:17px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:12px;
+
+  background:white;
+}
+
+.kpi-name{
+  margin-bottom:7px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.kpi-number{
+  color:var(--cocoa);
+
+  font-size:24px;
+  line-height:1.1;
+
+  font-weight:900;
+}
+
+.kpi-change{
+  margin-top:7px;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.good{
+  color:var(--green);
+}
+
+.bad{
+  color:var(--danger);
+}
+
+.neutral{
+  color:var(--yellow);
+}
+
+.metric-bar{
+  height:5px;
+
+  margin-top:12px;
+
+  background:#eee9e2;
+
+  border-radius:99px;
+
+  overflow:hidden;
+}
+
+.metric-fill{
+  height:100%;
+
+  width:50%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--red),
+      var(--gold)
+    );
+
+  transition:
+    width .25s ease;
+}
+
+
+/* ==========================================================
+   FUNCTION IMPACT
+========================================================== */
+
+.function-impact{
+  margin-top:18px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:10px;
+}
+
+.impact-card{
+  padding:14px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:10px;
+
+  background:#faf8f4;
+}
+
+.impact-name{
+  color:var(--muted);
+
+  font-size:9px;
+  text-transform:uppercase;
+
+  font-weight:800;
+}
+
+.impact-value{
+  margin-top:5px;
+
+  color:var(--cocoa);
+
+  font-size:17px;
+  font-weight:900;
+}
+
+.impact-caption{
+  margin-top:2px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+
+/* ==========================================================
+   DECISION
+========================================================== */
+
+.decision-box{
+  margin-top:18px;
+
+  overflow:hidden;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:13px;
+}
+
+.decision-head{
+  padding:14px 17px;
+
+  display:flex;
+  justify-content:space-between;
+
+  background:#f5f0e9;
+
+  color:var(--cocoa);
+
+  font-weight:900;
+}
+
+.decision{
+  font-size:17px;
+
+  letter-spacing:.05em;
+}
+
+.decision-content{
+  padding:17px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.decision-content p{
+  margin-top:0;
+}
+
+.decision-content ul{
+  margin-bottom:0;
+
+  padding-left:18px;
+}
+
+.disclaimer{
+  margin-top:16px;
+
+  padding:11px 12px;
+
+  border-radius:8px;
+
+  background:#faf7f2;
+
+  color:#90857d;
+
+  font-size:9px;
+}
+
+
+/* ==========================================================
+   THINKING
+========================================================== */
+
+.thinking-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:16px;
+}
+
+.thinking-card{
+  padding:23px;
+
+  background:white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:14px;
+}
+
+.thinking-number{
+  margin-bottom:17px;
+
+  color:var(--red);
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.thinking-card h3{
+  margin:0 0 8px;
+
+  color:var(--cocoa);
+
+  font-size:16px;
+}
+
+.thinking-card p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+
+/* ==========================================================
+   CTA
+========================================================== */
+
+.cta{
+  position:relative;
+
+  overflow:hidden;
+
+  text-align:center;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      130deg,
+      #4d2423,
+      #75302e
+    );
+}
+
+.cta h2{
+  color:white;
+}
+
+.cta p{
+  max-width:730px;
+
+  margin:
+    0 auto 28px;
+
+  color:#e6d8cf;
+}
+
+.contact-row{
+  display:flex;
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+  gap:10px;
+}
+
+footer{
+  padding:22px;
+
+  background:#2c2020;
+
+  color:#bfaea4;
+
+  text-align:center;
+
+  font-size:10px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1000px){
+
+  .hero-grid,
+  .about-grid,
+  .lab-grid{
+    grid-template-columns:1fr;
+  }
+
+  .why-grid,
+  .thinking-grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .timeline{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .kpi-grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .function-impact{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .control-side{
+    border-right:0;
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+}
+
+
+@media(max-width:650px){
+
+  section{
+    padding:68px 0;
+  }
+
+  .hero-grid{
+    min-height:auto;
+
+    padding:72px 0;
+  }
+
+  h1{
+    font-size:47px;
+  }
+
+  .why-grid,
+  .timeline,
+  .thinking-grid,
+  .supply-flow,
+  .dashboard-top,
+  .kpi-grid,
+  .function-impact{
+    grid-template-columns:1fr;
+  }
+
+  .flow-node::after{
+    display:none;
+  }
+
+  .module-tabs{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .lab-header-top{
+    flex-direction:column;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     NAVIGATION
+====================================================== -->
+
+<nav>
+
+<div class="container nav-inner">
+
+  <div class="brand">
+    JAN KRAEGE
+  </div>
+
+  <div class="nav-right">
+
+    <div class="nav-links">
+
+      <a
+        href="#about"
+        data-de="Über mich"
+        data-en="About me"
+      >
+        Über mich
+      </a>
+
+      <a
+        href="#journey"
+        data-de="Mein Weg"
+        data-en="My journey"
+      >
+        Mein Weg
+      </a>
+
+      <a
+        href="#why"
+        data-de="Warum Supply Chain?"
+        data-en="Why Supply Chain?"
+      >
+        Warum Supply Chain?
+      </a>
+
+      <a href="#lab">
+        Supply Chain Lab
+      </a>
+
+    </div>
+
+
+    <div class="language-switch">
+
+      <button
+        id="deBtn"
+        class="lang-btn active"
+        type="button"
+      >
+        DE
+      </button>
+
+      <button
+        id="enBtn"
+        class="lang-btn"
+        type="button"
+      >
+        EN
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</nav>
+
+
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<header class="hero">
+
+<div class="wrapper-lines"></div>
+
+<div class="container hero-grid">
+
+
+  <div>
+
+    <div
+      class="eyebrow"
+      data-de="Bewerbung · Trainee Supply Chain / Logistik"
+      data-en="Application · Supply Chain / Logistics Trainee"
+    >
+      Bewerbung · Trainee Supply Chain / Logistik
+    </div>
+
+
+    <h1>
+      Jan Kraege
+    </h1>
+
+
+    <div
+      class="hero-subtitle"
+      data-de="Vom Rohstoff bis zum Kunden."
+      data-en="From raw material to customer."
+    >
+      Vom Rohstoff bis zum Kunden.
+    </div>
+
+
+    <p
+      class="hero-text"
+      data-de="Mich interessiert Supply Chain dort, wo Daten, operative Prozesse und Entscheidungen zusammenkommen. Ich möchte verstehen, welche Treiber hinter Kosten, Bestand, Kapazität und Lieferfähigkeit liegen – und daraus konkrete Verbesserungen entwickeln."
+      data-en="I am interested in supply chain where data, operational processes and decisions come together. I want to understand the drivers behind cost, inventory, capacity and service – and translate them into tangible improvements."
+    >
+      Mich interessiert Supply Chain dort, wo Daten,
+      operative Prozesse und Entscheidungen zusammenkommen.
+      Ich möchte verstehen, welche Treiber hinter Kosten,
+      Bestand, Kapazität und Lieferfähigkeit liegen – und daraus
+      konkrete Verbesserungen entwickeln.
+    </p>
+
+
+    <div class="hero-actions">
+
+      <a
+        class="btn btn-primary"
+        href="#about"
+        data-de="Mehr über mich"
+        data-en="About me"
+      >
+        Mehr über mich
+      </a>
+
+      <a
+        class="btn btn-secondary"
+        href="#lab"
+        data-de="Supply Chain Lab starten"
+        data-en="Start Supply Chain Lab"
+      >
+        Supply Chain Lab starten
+      </a>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="profile-wrapper">
+
+    <div class="hero-card">
+
+      <div
+        class="hero-card-label"
+        data-de="Mein Profil auf einen Blick"
+        data-en="My profile at a glance"
+      >
+        Mein Profil auf einen Blick
+      </div>
+
+
+      <div class="hero-stat">
+
+        <strong>
+          Master of Management
+        </strong>
+
+        <span>
+          University of Technology Sydney
+        </span>
+
+      </div>
+
+
+      <div class="hero-stat">
+
+        <strong>
+          Strategic Supply Chain Management
+        </strong>
+
+        <span
+          data-de="Akademischer Schwerpunkt"
+          data-en="Academic focus"
+        >
+          Akademischer Schwerpunkt
+        </span>
+
+      </div>
+
+
+      <div class="hero-stat">
+
+        <strong>
+          Deutschland × Australien
+        </strong>
+
+        <span
+          data-de="Internationale Studien- und Praxiserfahrung"
+          data-en="International academic and professional experience"
+        >
+          Internationale Studien- und Praxiserfahrung
+        </span>
+
+      </div>
+
+
+      <div class="hero-stat">
+
+        <strong>
+          Analytics × Operations
+        </strong>
+
+        <span
+          data-de="Mein beruflicher Fokus"
+          data-en="My professional focus"
+        >
+          Mein beruflicher Fokus
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</header>
+
+
+
+<!-- ======================================================
+     ABOUT
+====================================================== -->
+
+<section id="about">
+
+<div class="container">
+
+  <div
+    class="section-label"
+    data-de="Über mich"
+    data-en="About me"
+  >
+    Über mich
+  </div>
+
+
+  <h2
+    data-de="Ich möchte verstehen, bevor ich optimiere."
+    data-en="I want to understand before I optimize."
+  >
+    Ich möchte verstehen, bevor ich optimiere.
+  </h2>
+
+
+  <p
+    class="section-intro"
+    data-de="Mich motivieren Aufgaben, bei denen Analyse nicht das Endprodukt ist, sondern die Grundlage für eine bessere operative Entscheidung."
+    data-en="I am motivated by challenges where analysis is not the final output, but the basis for a better operational decision."
+  >
+    Mich motivieren Aufgaben, bei denen Analyse nicht das
+    Endprodukt ist, sondern die Grundlage für eine bessere
+    operative Entscheidung.
+  </p>
+
+
+  <div class="about-grid">
+
+    <div class="card">
+
+      <h3
+        data-de="Mein Hintergrund"
+        data-en="My background"
+      >
+        Mein Hintergrund
+      </h3>
+
+
+      <p
+        class="about-copy"
+        data-de="Ich bin Master-of-Management-Absolvent mit internationaler Studien- und Praxiserfahrung. An der University of Technology Sydney lag mein Fokus unter anderem auf Strategic Supply Chain Management, Global Strategic Management, Sustainability und Managing Change. Meine bisherigen Projekte haben mir gezeigt, wie wichtig strukturierte Analyse, klare Kommunikation und funktionsübergreifende Zusammenarbeit für belastbare Entscheidungen sind."
+        data-en="I am a Master of Management graduate with international academic and professional experience. At the University of Technology Sydney, my focus included Strategic Supply Chain Management, Global Strategic Management, Sustainability and Managing Change. My previous projects have shown me how important structured analysis, clear communication and cross-functional collaboration are for robust decision-making."
+      >
+        Ich bin Master-of-Management-Absolvent mit internationaler
+        Studien- und Praxiserfahrung. An der University of Technology
+        Sydney lag mein Fokus unter anderem auf Strategic Supply Chain
+        Management, Global Strategic Management, Sustainability und
+        Managing Change. Meine bisherigen Projekte haben mir gezeigt,
+        wie wichtig strukturierte Analyse, klare Kommunikation und
+        funktionsübergreifende Zusammenarbeit für belastbare
+        Entscheidungen sind.
+      </p>
+
+
+      <div class="pill-row">
+
+        <span class="pill">
+          Supply Chain Management
+        </span>
+
+        <span
+          class="pill"
+          data-de="Analytisches Denken"
+          data-en="Analytical Thinking"
+        >
+          Analytisches Denken
+        </span>
+
+        <span
+          class="pill"
+          data-de="Strukturierte Problemlösung"
+          data-en="Structured Problem Solving"
+        >
+          Strukturierte Problemlösung
+        </span>
+
+        <span class="pill">
+          Teamwork
+        </span>
+
+        <span
+          class="pill"
+          data-de="Prozessverbesserung"
+          data-en="Process Improvement"
+        >
+          Prozessverbesserung
+        </span>
+
+        <span
+          class="pill"
+          data-de="Datenbasierte Entscheidungen"
+          data-en="Data-based Decisions"
+        >
+          Datenbasierte Entscheidungen
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="card quote-card">
+
+      <h3
+        data-de="Meine Perspektive"
+        data-en="My perspective"
+      >
+        Meine Perspektive
+      </h3>
+
+
+      <p
+        data-de="Eine lokale Verbesserung ist für mich nur dann eine echte Verbesserung, wenn sie auch im Gesamtsystem funktioniert."
+        data-en="For me, a local improvement is only a real improvement if it also works for the overall system."
+      >
+        Eine lokale Verbesserung ist für mich nur dann eine echte
+        Verbesserung, wenn sie auch im Gesamtsystem funktioniert.
+      </p>
+
+
+      <div
+        class="quote"
+        data-de="„Kosten, Bestand, Kapazität und Service sind keine isolierten Kennzahlen – sie beeinflussen sich gegenseitig.“"
+        data-en="“Cost, inventory, capacity and service are not isolated KPIs – they influence each other.”"
+      >
+        „Kosten, Bestand, Kapazität und Service sind keine isolierten
+        Kennzahlen – sie beeinflussen sich gegenseitig.“
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+     JOURNEY
+====================================================== -->
+
+<section id="journey">
+
+<div class="container">
+
+
+  <div
+    class="section-label"
+    data-de="Mein Weg"
+    data-en="My journey"
+  >
+    Mein Weg
+  </div>
+
+
+  <h2
+    data-de="Von internationaler BWL zu Supply Chain."
+    data-en="From international business to supply chain."
+  >
+    Von internationaler BWL zu Supply Chain.
+  </h2>
+
+
+  <p
+    class="section-intro"
+    data-de="Mein bisheriger Weg verbindet wirtschaftliche Analyse, internationale Perspektive und einen zunehmend stärkeren Fokus auf Supply Chain Management."
+    data-en="My journey combines commercial analysis, international experience and an increasingly strong focus on supply chain management."
+  >
+    Mein bisheriger Weg verbindet wirtschaftliche Analyse,
+    internationale Perspektive und einen zunehmend stärkeren Fokus
+    auf Supply Chain Management.
+  </p>
+
+
+
+  <div class="timeline">
+
+
+    <div class="timeline-card">
+
+      <div class="timeline-year">
+        2020 – 2024
+      </div>
+
+      <h3>
+        Bachelor of Business Administration
+      </h3>
+
+      <p
+        data-de="Hochschule Fresenius. International Management, Marketing und Organisationspsychologie. Bachelorarbeit über Supply-Chain-Störungen im australischen Markt."
+        data-en="Hochschule Fresenius. International Management, Marketing and Organisational Psychology. Bachelor thesis on supply chain disruptions in the Australian market."
+      >
+        Hochschule Fresenius. International Management,
+        Marketing und Organisationspsychologie.
+        Bachelorarbeit über Supply-Chain-Störungen
+        im australischen Markt.
+      </p>
+
+    </div>
+
+
+
+    <div class="timeline-card">
+
+      <div class="timeline-year">
+        2022
+      </div>
+
+      <h3>
+        BRITA Australia
+      </h3>
+
+      <p
+        data-de="Strategische Machbarkeitsanalyse für ein neues Geschäftsmodell, datenbasierte Go-/No-Go-Empfehlung und Zusammenarbeit mit Marketing, Sales und E-Commerce."
+        data-en="Strategic feasibility assessment for a new business model, data-based go/no-go recommendation and collaboration with Marketing, Sales and E-Commerce."
+      >
+        Strategische Machbarkeitsanalyse für ein neues Geschäftsmodell,
+        datenbasierte Go-/No-Go-Empfehlung und Zusammenarbeit mit
+        Marketing, Sales und E-Commerce.
+      </p>
+
+    </div>
+
+
+
+    <div class="timeline-card">
+
+      <div class="timeline-year">
+        2025 – 2026
+      </div>
+
+      <h3>
+        Master of Management · UTS
+      </h3>
+
+      <p>
+        Strategic Supply Chain Management · Global Strategic Management ·
+        Sustainability · Managing Change · Creative Problem Solving
+      </p>
+
+    </div>
+
+
+
+    <div class="timeline-card">
+
+      <div class="timeline-year">
+        2026
+      </div>
+
+      <h3>
+        Tokyo Headspa · Sydney
+      </h3>
+
+      <p
+        data-de="Markt- und Wettbewerbsanalysen, Performance-Auswertungen, eigenständige Projektarbeit und generative KI für strukturierte Ideen- und Konzeptentwicklung."
+        data-en="Market and competitor analysis, performance analysis, independent project work and generative AI for structured ideation and concept development."
+      >
+        Markt- und Wettbewerbsanalysen, Performance-Auswertungen,
+        eigenständige Projektarbeit und generative KI für strukturierte
+        Ideen- und Konzeptentwicklung.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+     WHY / SUPPLY CHAIN FUNCTIONS
+====================================================== -->
+
+<section id="why">
+
+<div class="container">
+
+
+  <div
+    class="section-label"
+    data-de="Supply Chain / Logistik"
+    data-en="Supply Chain / Logistics"
+  >
+    Supply Chain / Logistik
+  </div>
+
+
+  <h2
+    data-de="Vier Funktionen. Ein Gesamtsystem."
+    data-en="Four functions. One system."
+  >
+    Vier Funktionen. Ein Gesamtsystem.
+  </h2>
+
+
+  <p
+    class="section-intro"
+    data-de="Besonders interessant finde ich die Möglichkeit, Produktionsplanung, Materialwirtschaft, Lagerlogistik und Distribution nicht isoliert kennenzulernen, sondern ihre Wechselwirkungen entlang der gesamten Supply Chain zu verstehen."
+    data-en="What particularly interests me is the opportunity to understand production planning, materials management, warehouse logistics and distribution not in isolation, but through their interactions across the entire supply chain."
+  >
+    Besonders interessant finde ich die Möglichkeit,
+    Produktionsplanung, Materialwirtschaft, Lagerlogistik
+    und Distribution nicht isoliert kennenzulernen,
+    sondern ihre Wechselwirkungen entlang der gesamten
+    Supply Chain zu verstehen.
+  </p>
+
+
+
+  <div class="why-grid">
+
+
+    <div class="card function-card">
+
+      <div class="function-number">
+        01
+      </div>
+
+      <h3
+        data-de="Produktionsplanung"
+        data-en="Production Planning"
+      >
+        Produktionsplanung
+      </h3>
+
+      <p
+        data-de="Nachfrage, Forecast, Kapazität und Losgrößen müssen so abgestimmt werden, dass Verfügbarkeit und Effizienz zusammenpassen."
+        data-en="Demand, forecast, capacity and batch sizes need to be aligned so that service and efficiency work together."
+      >
+        Nachfrage, Forecast, Kapazität und Losgrößen
+        müssen so abgestimmt werden, dass
+        Verfügbarkeit und Effizienz zusammenpassen.
+      </p>
+
+    </div>
+
+
+
+    <div class="card function-card">
+
+      <div class="function-number">
+        02
+      </div>
+
+      <h3
+        data-de="Materialwirtschaft"
+        data-en="Materials Management"
+      >
+        Materialwirtschaft
+      </h3>
+
+      <p
+        data-de="Lieferzuverlässigkeit, Beschaffungszeit und Sicherheitsbestand bestimmen, ob Produktion stabil läuft oder Materialengpässe entstehen."
+        data-en="Supplier reliability, procurement lead time and safety stock determine whether production runs reliably or material shortages occur."
+      >
+        Lieferzuverlässigkeit, Beschaffungszeit und
+        Sicherheitsbestand bestimmen, ob Produktion
+        stabil läuft oder Materialengpässe entstehen.
+      </p>
+
+    </div>
+
+
+
+    <div class="card function-card">
+
+      <div class="function-number">
+        03
+      </div>
+
+      <h3
+        data-de="Lagerlogistik"
+        data-en="Warehouse Logistics"
+      >
+        Lagerlogistik
+      </h3>
+
+      <p
+        data-de="Bestand, Flächennutzung, Pickleistung und Prozessgestaltung beeinflussen Kosten, Geschwindigkeit und Durchsatz."
+        data-en="Inventory, space utilization, picking performance and process design influence cost, speed and throughput."
+      >
+        Bestand, Flächennutzung, Pickleistung
+        und Prozessgestaltung beeinflussen
+        Kosten, Geschwindigkeit und Durchsatz.
+      </p>
+
+    </div>
+
+
+
+    <div class="card function-card">
+
+      <div class="function-number">
+        04
+      </div>
+
+      <h3
+        data-de="Distributionslogistik"
+        data-en="Distribution Logistics"
+      >
+        Distributionslogistik
+      </h3>
+
+      <p
+        data-de="Transportauslastung, Lieferfrequenz und Zuverlässigkeit müssen zwischen Kosten und Kundenanforderungen ausbalanciert werden."
+        data-en="Transport utilization, delivery frequency and reliability must be balanced between cost efficiency and customer requirements."
+      >
+        Transportauslastung, Lieferfrequenz und
+        Zuverlässigkeit müssen zwischen Kosten
+        und Kundenanforderungen ausbalanciert werden.
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- END TO END FLOW -->
+
+  <div class="flow-section">
+
+    <div class="flow-shell">
+
+      <div
+        class="flow-title"
+        data-de="End-to-End Supply Chain"
+        data-en="End-to-End Supply Chain"
+      >
+        End-to-End Supply Chain
+      </div>
+
+
+      <div class="supply-flow">
+
+        <div class="flow-node">
+
+          <div
+            class="flow-node-title"
+            data-de="Rohmaterial"
+            data-en="Raw Material"
+          >
+            Rohmaterial
+          </div>
+
+          <div
+            id="flowMaterial"
+            class="flow-node-kpi"
+          >
+            96,0 %
+          </div>
+
+          <div
+            class="flow-node-label"
+            data-de="Materialverfügbarkeit"
+            data-en="Material Availability"
+          >
+            Materialverfügbarkeit
+          </div>
+
+        </div>
+
+
+
+        <div class="flow-node">
+
+          <div
+            class="flow-node-title"
+            data-de="Produktion"
+            data-en="Production"
+          >
+            Produktion
+          </div>
+
+          <div
+            id="flowProduction"
+            class="flow-node-kpi"
+          >
+            82 %
+          </div>
+
+          <div
+            class="flow-node-label"
+            data-de="Kapazitätsauslastung"
+            data-en="Capacity Utilization"
+          >
+            Kapazitätsauslastung
+          </div>
+
+        </div>
+
+
+
+        <div class="flow-node">
+
+          <div
+            class="flow-node-title"
+            data-de="Lager"
+            data-en="Warehouse"
+          >
+            Lager
+          </div>
+
+          <div
+            id="flowWarehouse"
+            class="flow-node-kpi"
+          >
+            147
+          </div>
+
+          <div
+            class="flow-node-label"
+            data-de="Pickleistung / h"
+            data-en="Picking Lines / h"
+          >
+            Pickleistung / h
+          </div>
+
+        </div>
+
+
+
+        <div class="flow-node">
+
+          <div
+            class="flow-node-title"
+            data-de="Distribution"
+            data-en="Distribution"
+          >
+            Distribution
+          </div>
+
+          <div
+            id="flowDistribution"
+            class="flow-node-kpi"
+          >
+            84 %
+          </div>
+
+          <div
+            class="flow-node-label"
+            data-de="Transportauslastung"
+            data-en="Transport Utilization"
+          >
+            Transportauslastung
+          </div>
+
+        </div>
+
+
+
+        <div class="flow-node">
+
+          <div
+            class="flow-node-title"
+            data-de="Kunde"
+            data-en="Customer"
+          >
+            Kunde
+          </div>
+
+          <div
+            id="flowService"
+            class="flow-node-kpi"
+          >
+            97,2 %
+          </div>
+
+          <div
+            class="flow-node-label"
+            data-de="Lieferfähigkeit"
+            data-en="Service Level"
+          >
+            Lieferfähigkeit
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+     SUPPLY CHAIN LAB
+====================================================== -->
+
+<section id="lab">
+
+<div class="container">
+
+
+  <div
+    class="section-label"
+    data-de="Interactive Application Case"
+    data-en="Interactive Application Case"
+  >
+    Interactive Application Case
+  </div>
+
+
+  <h2>
+    Supply Chain Optimization Lab
+  </h2>
+
+
+  <p
+    class="section-intro"
+    data-de="Verändere einzelne Stellhebel entlang der Supply Chain. Das Modell zeigt, warum lokale Optimierungen Auswirkungen auf Kosten, Bestand, Kapazität, Durchlaufzeit und Lieferfähigkeit im Gesamtsystem haben."
+    data-en="Adjust individual supply chain levers. The model demonstrates why local improvements influence cost, inventory, capacity, lead time and service across the overall system."
+  >
+    Verändere einzelne Stellhebel entlang der Supply Chain.
+    Das Modell zeigt, warum lokale Optimierungen Auswirkungen auf
+    Kosten, Bestand, Kapazität, Durchlaufzeit und Lieferfähigkeit
+    im Gesamtsystem haben.
+  </p>
+
+
+
+  <div class="lab-wrapper">
+
+
+    <!-- LAB HEADER -->
+
+    <div class="lab-header">
+
+      <div class="lab-header-top">
+
+        <div>
+
+          <h3
+            data-de="Challenge: Lieferfähigkeit sichern – Gesamtsystem optimieren"
+            data-en="Challenge: Secure service – optimize the overall system"
+          >
+            Challenge: Lieferfähigkeit sichern – Gesamtsystem optimieren
+          </h3>
+
+          <p
+            data-de="Ziel ist nicht, eine einzelne Kennzahl maximal zu verbessern. Gesucht wird ein belastbarer Kompromiss zwischen Kosten, Produktionsstabilität, Bestand, Lagerleistung und Distribution."
+            data-en="The objective is not to maximize one KPI. The goal is to find a robust balance between cost, production stability, inventory, warehouse performance and distribution."
+          >
+            Ziel ist nicht, eine einzelne Kennzahl maximal zu verbessern.
+            Gesucht wird ein belastbarer Kompromiss zwischen Kosten,
+            Produktionsstabilität, Bestand, Lagerleistung und Distribution.
+          </p>
+
+        </div>
+
+
+        <div class="data-badge">
+          ILLUSTRATIVE DATA
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- PRESET SCENARIOS -->
+
+    <div class="preset-bar">
+
+      <span
+        class="preset-label"
+        data-de="Szenarien:"
+        data-en="Scenarios:"
+      >
+        Szenarien:
+      </span>
+
+
+      <button
+        id="baselinePreset"
+        class="preset-btn"
+        type="button"
+        data-de="Ausgangslage"
+        data-en="Baseline"
+      >
+        Ausgangslage
+      </button>
+
+
+      <button
+        id="stressPreset"
+        class="preset-btn"
+        type="button"
+        data-de="Demand Shock +15 %"
+        data-en="Demand Shock +15%"
+      >
+        Demand Shock +15 %
+      </button>
+
+
+      <button
+        id="costPreset"
+        class="preset-btn"
+        type="button"
+        data-de="Kostenfokus"
+        data-en="Cost Focus"
+      >
+        Kostenfokus
+      </button>
+
+
+      <button
+        id="servicePreset"
+        class="preset-btn"
+        type="button"
+        data-de="Servicefokus"
+        data-en="Service Focus"
+      >
+        Servicefokus
+      </button>
+
+
+      <button
+        id="balancePreset"
+        class="preset-btn"
+        type="button"
+      >
+        Best Balance
+      </button>
+
+    </div>
+
+
+
+    <div class="lab-grid">
+
+
+      <!-- ==================================================
+           LEFT CONTROL SIDE
+      ================================================== -->
+
+      <div class="control-side">
+
+
+        <!-- MODULE TABS -->
+
+        <div class="module-tabs">
+
+          <button
+            class="module-tab active"
+            type="button"
+            data-module="productionPanel"
+            data-de="Produktion"
+            data-en="Production"
+          >
+            Produktion
+          </button>
+
+
+          <button
+            class="module-tab"
+            type="button"
+            data-module="materialPanel"
+            data-de="Material"
+            data-en="Materials"
+          >
+            Material
+          </button>
+
+
+          <button
+            class="module-tab"
+            type="button"
+            data-module="warehousePanel"
+            data-de="Lager"
+            data-en="Warehouse"
+          >
+            Lager
+          </button>
+
+
+          <button
+            class="module-tab"
+            type="button"
+            data-module="distributionPanel"
+            data-de="Distribution"
+            data-en="Distribution"
+          >
+            Distribution
+          </button>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             PRODUCTION
+        ================================================== -->
+
+        <div
+          id="productionPanel"
+          class="module-panel active"
+        >
+
+          <div class="module-intro">
+
+            <h4
+              data-de="Produktionsplanung"
+              data-en="Production Planning"
+            >
+              Produktionsplanung
+            </h4>
+
+            <p
+              data-de="Wie gut passen Nachfrage, Forecast und geplante Kapazität zusammen?"
+              data-en="How well do demand, forecast and planned capacity fit together?"
+            >
+              Wie gut passen Nachfrage, Forecast und geplante
+              Kapazität zusammen?
+            </p>
+
+          </div>
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Nachfrageindex"
+                data-en="Demand Index"
+              >
+                Nachfrageindex
+              </strong>
+
+              <span
+                id="demandValue"
+                class="control-value"
+              >
+                100
+              </span>
+
+            </div>
+
+            <input
+              id="demand"
+              type="range"
+              min="90"
+              max="125"
+              value="100"
+              step="1"
+            >
+
+            <div
+              class="control-help"
+              data-de="100 = angenommene Ausgangsnachfrage"
+              data-en="100 = assumed baseline demand"
+            >
+              100 = angenommene Ausgangsnachfrage
+            </div>
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Forecast Accuracy"
+                data-en="Forecast Accuracy"
+              >
+                Forecast Accuracy
+              </strong>
+
+              <span
+                id="forecastValue"
+                class="control-value"
+              >
+                85 %
+              </span>
+
+            </div>
+
+            <input
+              id="forecast"
+              type="range"
+              min="65"
+              max="98"
+              value="85"
+              step="1"
+            >
+
+            <div
+              class="control-help"
+              data-de="Höhere Genauigkeit reduziert Über- und Unterplanung."
+              data-en="Higher accuracy reduces over- and underplanning."
+            >
+              Höhere Genauigkeit reduziert Über- und Unterplanung.
+            </div>
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Produktionsplan"
+                data-en="Production Plan"
+              >
+                Produktionsplan
+              </strong>
+
+              <span
+                id="productionValue"
+                class="control-value"
+              >
+                100
+              </span>
+
+            </div>
+
+            <input
+              id="production"
+              type="range"
+              min="90"
+              max="125"
+              value="100"
+              step="1"
+            >
+
+            <div
+              class="control-help"
+              data-de="Geplante Output-Kapazität relativ zur Ausgangslage."
+              data-en="Planned output capacity relative to baseline."
+            >
+              Geplante Output-Kapazität relativ zur Ausgangslage.
+            </div>
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Losgrößenindex"
+                data-en="Batch Size Index"
+              >
+                Losgrößenindex
+              </strong>
+
+              <span
+                id="lotValue"
+                class="control-value"
+              >
+                100
+              </span>
+
+            </div>
+
+            <input
+              id="lot"
+              type="range"
+              min="70"
+              max="140"
+              value="100"
+              step="5"
+            >
+
+            <div
+              class="control-help"
+              data-de="Große Lose können effizient sein, erhöhen aber tendenziell Bestand und Flexibilitätsrisiko."
+              data-en="Large batches can improve efficiency but tend to increase inventory and reduce flexibility."
+            >
+              Große Lose können effizient sein, erhöhen aber tendenziell
+              Bestand und Flexibilitätsrisiko.
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             MATERIAL MANAGEMENT
+        ================================================== -->
+
+        <div
+          id="materialPanel"
+          class="module-panel"
+        >
+
+          <div class="module-intro">
+
+            <h4
+              data-de="Materialwirtschaft"
+              data-en="Materials Management"
+            >
+              Materialwirtschaft
+            </h4>
+
+            <p
+              data-de="Wie stabil ist die Versorgung der Produktion mit den benötigten Materialien?"
+              data-en="How reliably can production be supplied with the required materials?"
+            >
+              Wie stabil ist die Versorgung der Produktion
+              mit den benötigten Materialien?
+            </p>
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Lieferantenzuverlässigkeit"
+                data-en="Supplier Reliability"
+              >
+                Lieferantenzuverlässigkeit
+              </strong>
+
+              <span
+                id="supplierReliabilityValue"
+                class="control-value"
+              >
+                96 %
+              </span>
+
+            </div>
+
+            <input
+              id="supplierReliability"
+              type="range"
+              min="85"
+              max="99.5"
+              value="96"
+              step=".5"
+            >
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Beschaffungszeit"
+                data-en="Supplier Lead Time"
+              >
+                Beschaffungszeit
+              </strong>
+
+              <span
+                id="supplierLeadValue"
+                class="control-value"
+              >
+                5 Tage
+              </span>
+
+            </div>
+
+            <input
+              id="supplierLead"
+              type="range"
+              min="2"
+              max="10"
+              value="5"
+              step=".5"
+            >
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Sicherheitsbestand"
+                data-en="Safety Stock"
+              >
+                Sicherheitsbestand
+              </strong>
+
+              <span
+                id="safetyValue"
+                class="control-value"
+              >
+                12 Tage
+              </span>
+
+            </div>
+
+            <input
+              id="safety"
+              type="range"
+              min="5"
+              max="25"
+              value="12"
+              step="1"
+            >
+
+            <div
+              class="control-help"
+              data-de="Mehr Sicherheitsbestand erhöht Robustheit, aber auch Kapitalbindung und Lagerbedarf."
+              data-en="More safety stock increases resilience, but also capital tied up and warehouse demand."
+            >
+              Mehr Sicherheitsbestand erhöht Robustheit,
+              aber auch Kapitalbindung und Lagerbedarf.
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             WAREHOUSE
+        ================================================== -->
+
+        <div
+          id="warehousePanel"
+          class="module-panel"
+        >
+
+          <div class="module-intro">
+
+            <h4
+              data-de="Lagerlogistik"
+              data-en="Warehouse Logistics"
+            >
+              Lagerlogistik
+            </h4>
+
+            <p
+              data-de="Wie effizient werden Bestand, Fläche und Kommissionierleistung genutzt?"
+              data-en="How efficiently are inventory, space and picking capacity used?"
+            >
+              Wie effizient werden Bestand, Fläche
+              und Kommissionierleistung genutzt?
+            </p>
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Pickleistung"
+                data-en="Picking Productivity"
+              >
+                Pickleistung
+              </strong>
+
+              <span
+                id="pickValue"
+                class="control-value"
+              >
+                140 / h
+              </span>
+
+            </div>
+
+            <input
+              id="pick"
+              type="range"
+              min="100"
+              max="190"
+              value="140"
+              step="5"
+            >
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Prozessverbesserung"
+                data-en="Process Improvement"
+              >
+                Prozessverbesserung
+              </strong>
+
+              <span
+                id="processValue"
+                class="control-value"
+              >
+                5 %
+              </span>
+
+            </div>
+
+            <input
+              id="process"
+              type="range"
+              min="0"
+              max="20"
+              value="5"
+              step="1"
+            >
+
+            <div
+              class="control-help"
+              data-de="Illustrativer Effekt aus Layout, Slotting, Standards oder Digitalisierung."
+              data-en="Illustrative effect from layout, slotting, standards or digitalization."
+            >
+              Illustrativer Effekt aus Layout, Slotting,
+              Standards oder Digitalisierung.
+            </div>
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Flächeneffizienz"
+                data-en="Storage Density"
+              >
+                Flächeneffizienz
+              </strong>
+
+              <span
+                id="storageValue"
+                class="control-value"
+              >
+                100
+              </span>
+
+            </div>
+
+            <input
+              id="storage"
+              type="range"
+              min="90"
+              max="115"
+              value="100"
+              step="1"
+            >
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             DISTRIBUTION
+        ================================================== -->
+
+        <div
+          id="distributionPanel"
+          class="module-panel"
+        >
+
+          <div class="module-intro">
+
+            <h4
+              data-de="Distributionslogistik"
+              data-en="Distribution Logistics"
+            >
+              Distributionslogistik
+            </h4>
+
+            <p
+              data-de="Wie lassen sich Transportkosten und Kundenservice miteinander ausbalancieren?"
+              data-en="How can transport cost and customer service be balanced?"
+            >
+              Wie lassen sich Transportkosten und Kundenservice
+              miteinander ausbalancieren?
+            </p>
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Transportauslastung"
+                data-en="Transport Utilization"
+              >
+                Transportauslastung
+              </strong>
+
+              <span
+                id="transportUtilValue"
+                class="control-value"
+              >
+                84 %
+              </span>
+
+            </div>
+
+            <input
+              id="transportUtil"
+              type="range"
+              min="65"
+              max="96"
+              value="84"
+              step="1"
+            >
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Lieferfrequenz"
+                data-en="Delivery Frequency"
+              >
+                Lieferfrequenz
+              </strong>
+
+              <span
+                id="deliveryValue"
+                class="control-value"
+              >
+                5 / Woche
+              </span>
+
+            </div>
+
+            <input
+              id="delivery"
+              type="range"
+              min="2"
+              max="7"
+              value="5"
+              step="1"
+            >
+
+          </div>
+
+
+
+          <div class="control">
+
+            <div class="control-head">
+
+              <strong
+                data-de="Transportzuverlässigkeit"
+                data-en="Transport Reliability"
+              >
+                Transportzuverlässigkeit
+              </strong>
+
+              <span
+                id="transportReliabilityValue"
+                class="control-value"
+              >
+                97 %
+              </span>
+
+            </div>
+
+            <input
+              id="transportReliability"
+              type="range"
+              min="90"
+              max="99.5"
+              value="97"
+              step=".5"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ==================================================
+           RIGHT DASHBOARD
+      ================================================== -->
+
+      <div class="dashboard">
+
+
+        <div class="dashboard-top">
+
+
+          <div class="score-card">
+
+            <div
+              class="score-label"
+              data-de="Supply Chain Score"
+              data-en="Supply Chain Score"
+            >
+              Supply Chain Score
+            </div>
+
+            <div
+              id="scoreValue"
+              class="score-value"
+            >
+              72
+            </div>
+
+            <div
+              id="scoreSub"
+              class="score-sub"
+            >
+              Ausgangslage
+            </div>
+
+          </div>
+
+
+
+          <div class="bottleneck-card">
+
+            <div
+              class="bottleneck-label"
+              data-de="Aktuell größter Engpass"
+              data-en="Current Main Bottleneck"
+            >
+              Aktuell größter Engpass
+            </div>
+
+            <div
+              id="bottleneckTitle"
+              class="bottleneck-title"
+            >
+              Materialwirtschaft
+            </div>
+
+            <div
+              id="bottleneckText"
+              class="bottleneck-text"
+            >
+              Materialverfügbarkeit liegt unter dem Zielniveau.
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- KPI DASHBOARD -->
+
+        <div class="kpi-grid">
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Gesamtkosten / Einheit"
+              data-en="Total Cost / Unit"
+            >
+              Gesamtkosten / Einheit
+            </div>
+
+            <div
+              id="costKPI"
+              class="kpi-number"
+            >
+              1,64 €
+            </div>
+
+            <div
+              id="costChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="costBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Lieferfähigkeit"
+              data-en="Service Level"
+            >
+              Lieferfähigkeit
+            </div>
+
+            <div
+              id="serviceKPI"
+              class="kpi-number"
+            >
+              97,2 %
+            </div>
+
+            <div
+              id="serviceChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="serviceBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Materialverfügbarkeit"
+              data-en="Material Availability"
+            >
+              Materialverfügbarkeit
+            </div>
+
+            <div
+              id="materialKPI"
+              class="kpi-number"
+            >
+              96,0 %
+            </div>
+
+            <div
+              id="materialChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="materialBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Durchlaufzeit"
+              data-en="Lead Time"
+            >
+              Durchlaufzeit
+            </div>
+
+            <div
+              id="leadKPI"
+              class="kpi-number"
+            >
+              9,4 Tage
+            </div>
+
+            <div
+              id="leadChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="leadBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Bestandsindex"
+              data-en="Inventory Index"
+            >
+              Bestandsindex
+            </div>
+
+            <div
+              id="inventoryKPI"
+              class="kpi-number"
+            >
+              105
+            </div>
+
+            <div
+              id="inventoryChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="inventoryBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Lagerauslastung"
+              data-en="Warehouse Utilization"
+            >
+              Lagerauslastung
+            </div>
+
+            <div
+              id="warehouseKPI"
+              class="kpi-number"
+            >
+              72 %
+            </div>
+
+            <div
+              id="warehouseChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="warehouseBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Pickleistung"
+              data-en="Picking Productivity"
+            >
+              Pickleistung
+            </div>
+
+            <div
+              id="pickKPI"
+              class="kpi-number"
+            >
+              147 / h
+            </div>
+
+            <div
+              id="pickChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="pickBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+
+          <div class="kpi">
+
+            <div
+              class="kpi-name"
+              data-de="Transportkosten / Einheit"
+              data-en="Transport Cost / Unit"
+            >
+              Transportkosten / Einheit
+            </div>
+
+            <div
+              id="transportCostKPI"
+              class="kpi-number"
+            >
+              0,26 €
+            </div>
+
+            <div
+              id="transportCostChange"
+              class="kpi-change"
+            >
+              Baseline
+            </div>
+
+            <div class="metric-bar">
+              <div
+                id="transportCostBar"
+                class="metric-fill"
+              ></div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- FUNCTION IMPACT -->
+
+        <div class="function-impact">
+
+
+          <div class="impact-card">
+
+            <div
+              class="impact-name"
+              data-de="Produktion"
+              data-en="Production"
+            >
+              Produktion
+            </div>
+
+            <div
+              id="productionUtilImpact"
+              class="impact-value"
+            >
+              82 %
+            </div>
+
+            <div
+              class="impact-caption"
+              data-de="Kapazitätsauslastung"
+              data-en="Capacity Utilization"
+            >
+              Kapazitätsauslastung
+            </div>
+
+          </div>
+
+
+
+          <div class="impact-card">
+
+            <div
+              class="impact-name"
+              data-de="Material"
+              data-en="Materials"
+            >
+              Material
+            </div>
+
+            <div
+              id="materialImpact"
+              class="impact-value"
+            >
+              96 %
+            </div>
+
+            <div
+              class="impact-caption"
+              data-de="Verfügbarkeit"
+              data-en="Availability"
+            >
+              Verfügbarkeit
+            </div>
+
+          </div>
+
+
+
+          <div class="impact-card">
+
+            <div
+              class="impact-name"
+              data-de="Lager"
+              data-en="Warehouse"
+            >
+              Lager
+            </div>
+
+            <div
+              id="warehouseImpact"
+              class="impact-value"
+            >
+              147 / h
+            </div>
+
+            <div
+              class="impact-caption"
+              data-de="Pickleistung"
+              data-en="Picking Performance"
+            >
+              Pickleistung
+            </div>
+
+          </div>
+
+
+
+          <div class="impact-card">
+
+            <div
+              class="impact-name"
+              data-de="Distribution"
+              data-en="Distribution"
+            >
+              Distribution
+            </div>
+
+            <div
+              id="distributionImpact"
+              class="impact-value"
+            >
+              84 %
+            </div>
+
+            <div
+              class="impact-caption"
+              data-de="Transportauslastung"
+              data-en="Transport Utilization"
+            >
+              Transportauslastung
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- MANAGEMENT DECISION -->
+
+        <div class="decision-box">
+
+
+          <div class="decision-head">
+
+            <span
+              data-de="Management-Entscheidung"
+              data-en="Management Decision"
+            >
+              Management-Entscheidung
+            </span>
+
+            <span
+              id="decision"
+              class="decision"
+            >
+              ADAPT
+            </span>
+
+          </div>
+
+
+
+          <div class="decision-content">
+
+            <p id="decisionText">
+            </p>
+
+            <ul id="decisionReasons">
+            </ul>
+
+          </div>
+
+        </div>
+
+
+
+        <div
+          class="disclaimer"
+          data-de="Alle Werte, Formeln und Zusammenhänge sind rein illustrativ und basieren nicht auf internen Daten von Storck. Der Case dient ausschließlich dazu, meine analytische und strukturierte Arbeitsweise zu demonstrieren."
+          data-en="All figures, formulas and relationships are purely illustrative and are not based on internal Storck data. The case is designed solely to demonstrate my analytical and structured approach."
+        >
+          Alle Werte, Formeln und Zusammenhänge sind rein illustrativ
+          und basieren nicht auf internen Daten von Storck.
+          Der Case dient ausschließlich dazu, meine analytische
+          und strukturierte Arbeitsweise zu demonstrieren.
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+     HOW I THINK
+====================================================== -->
+
+<section>
+
+<div class="container">
+
+
+  <div class="section-label">
+    How I Think
+  </div>
+
+
+  <h2
+    data-de="Von Daten zur Umsetzung."
+    data-en="From data to implementation."
+  >
+    Von Daten zur Umsetzung.
+  </h2>
+
+
+  <p
+    class="section-intro"
+    data-de="Der Simulator folgt einer Logik, die ich auch bei realen Supply-Chain-Fragestellungen anwenden würde."
+    data-en="The simulator follows the same logic I would apply to real supply chain challenges."
+  >
+    Der Simulator folgt einer Logik,
+    die ich auch bei realen Supply-Chain-Fragestellungen
+    anwenden würde.
+  </p>
+
+
+
+  <div class="thinking-grid">
+
+
+    <div class="thinking-card">
+
+      <div class="thinking-number">
+        01
+      </div>
+
+      <h3
+        data-de="Transparenz schaffen"
+        data-en="Create transparency"
+      >
+        Transparenz schaffen
+      </h3>
+
+      <p
+        data-de="KPIs, Ausgangslage und operative Rahmenbedingungen zunächst sauber verstehen."
+        data-en="First understand KPIs, the baseline and operational constraints."
+      >
+        KPIs, Ausgangslage und operative Rahmenbedingungen
+        zunächst sauber verstehen.
+      </p>
+
+    </div>
+
+
+
+    <div class="thinking-card">
+
+      <div class="thinking-number">
+        02
+      </div>
+
+      <h3
+        data-de="Treiber analysieren"
+        data-en="Analyze drivers"
+      >
+        Treiber analysieren
+      </h3>
+
+      <p
+        data-de="Nicht nur Symptome betrachten, sondern Ursachen und Wechselwirkungen identifizieren."
+        data-en="Look beyond symptoms and identify underlying causes and interdependencies."
+      >
+        Nicht nur Symptome betrachten,
+        sondern Ursachen und Wechselwirkungen identifizieren.
+      </p>
+
+    </div>
+
+
+
+    <div class="thinking-card">
+
+      <div class="thinking-number">
+        03
+      </div>
+
+      <h3
+        data-de="Szenarien testen"
+        data-en="Test scenarios"
+      >
+        Szenarien testen
+      </h3>
+
+      <p
+        data-de="Kosten, Bestand, Kapazität und Service gemeinsam bewerten, statt lokal zu optimieren."
+        data-en="Evaluate cost, inventory, capacity and service together instead of optimizing locally."
+      >
+        Kosten, Bestand, Kapazität und Service
+        gemeinsam bewerten, statt lokal zu optimieren.
+      </p>
+
+    </div>
+
+
+
+    <div class="thinking-card">
+
+      <div class="thinking-number">
+        04
+      </div>
+
+      <h3
+        data-de="Entscheiden & umsetzen"
+        data-en="Decide & implement"
+      >
+        Entscheiden & umsetzen
+      </h3>
+
+      <p
+        data-de="Eine klare Empfehlung ableiten, operativ testen und die Wirkung anschließend messen."
+        data-en="Develop a clear recommendation, test it operationally and measure the resulting impact."
+      >
+        Eine klare Empfehlung ableiten,
+        operativ testen und die Wirkung anschließend messen.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+     CTA
+====================================================== -->
+
+<section class="cta">
+
+<div class="container">
+
+
+  <div
+    class="section-label"
+    style="color:#e6c79a;"
+  >
+    Jan Kraege
+  </div>
+
+
+  <h2
+    data-de="Verstehen.<br>Optimieren.<br>Verantwortung übernehmen."
+    data-en="Understand.<br>Optimize.<br>Take responsibility."
+  >
+    Verstehen.<br>
+    Optimieren.<br>
+    Verantwortung übernehmen.
+  </h2>
+
+
+  <p
+    data-de="Mein Ziel ist es, Supply Chain nicht nur analytisch zu betrachten, sondern gemeinsam mit den beteiligten Teams konkrete Verbesserungen vom Produktionsstandort bis zum Kunden zu entwickeln."
+    data-en="My goal is not only to analyze supply chains, but to work with the relevant teams to develop tangible improvements from production site to customer."
+  >
+    Mein Ziel ist es, Supply Chain nicht nur analytisch zu betrachten,
+    sondern gemeinsam mit den beteiligten Teams konkrete Verbesserungen
+    vom Produktionsstandort bis zum Kunden zu entwickeln.
+  </p>
+
+
+  <div class="contact-row">
+
+    <a
+      class="btn btn-primary"
+      href="mailto:jan.kraege@icloud.com"
+      data-de="Kontakt"
+      data-en="Contact"
+    >
+      Kontakt
+    </a>
+
+    <a
+      class="btn btn-secondary"
+      href="https://www.linkedin.com/in/jan-kraege"
+      target="_blank"
+      rel="noopener"
+    >
+      LinkedIn
+    </a>
+
+  </div>
+
+
+</div>
+
+</section>
+
+
+
+<footer
+  data-de="Persönliches Bewerbungsprojekt · Jan Kraege · 2026"
+  data-en="Personal application project · Jan Kraege · 2026"
+>
+  Persönliches Bewerbungsprojekt · Jan Kraege · 2026
+</footer>
+
+
+
+<script>
+
+
+/* ==========================================================
+   LANGUAGE
+========================================================== */
+
+
+let currentLanguage = "de";
+
+
+const translatableElements =
+  document.querySelectorAll(
+    "[data-de][data-en]"
+  );
+
+
+function setLanguage(lang){
+
+  currentLanguage = lang;
+
+  document.documentElement.lang =
+    lang;
+
+
+  translatableElements.forEach(
+    element => {
+
+      element.innerHTML =
+        lang === "de"
+        ? element.dataset.de
+        : element.dataset.en;
+
+    }
+  );
+
+
+  document
+    .getElementById("deBtn")
+    .classList.toggle(
+      "active",
+      lang === "de"
+    );
+
+
+  document
+    .getElementById("enBtn")
+    .classList.toggle(
+      "active",
+      lang === "en"
+    );
+
+
+  updateSliderLabels();
+
+  calculate();
+
+}
+
+
+document
+  .getElementById("deBtn")
+  .addEventListener(
+    "click",
+    () => setLanguage("de")
+  );
+
+
+document
+  .getElementById("enBtn")
+  .addEventListener(
+    "click",
+    () => setLanguage("en")
+  );
+
+
+
+/* ==========================================================
+   MODULE TABS
+========================================================== */
+
+
+const moduleTabs =
+  document.querySelectorAll(
+    ".module-tab"
+  );
+
+
+const modulePanels =
+  document.querySelectorAll(
+    ".module-panel"
+  );
+
+
+moduleTabs.forEach(
+  tab => {
+
+    tab.addEventListener(
+      "click",
+      () => {
+
+        moduleTabs.forEach(
+          item =>
+            item.classList.remove(
+              "active"
+            )
+        );
+
+
+        modulePanels.forEach(
+          panel =>
+            panel.classList.remove(
+              "active"
+            )
+        );
+
+
+        tab.classList.add(
+          "active"
+        );
+
+
+        document
+          .getElementById(
+            tab.dataset.module
+          )
+          .classList.add(
+            "active"
+          );
+
+      }
+    );
+
+  }
+);
+
+
+
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+
+const inputs = {
+
+  demand:
+    document.getElementById(
+      "demand"
+    ),
+
+  forecast:
+    document.getElementById(
+      "forecast"
+    ),
+
+  production:
+    document.getElementById(
+      "production"
+    ),
+
+  lot:
+    document.getElementById(
+      "lot"
+    ),
+
+  supplierReliability:
+    document.getElementById(
+      "supplierReliability"
+    ),
+
+  supplierLead:
+    document.getElementById(
+      "supplierLead"
+    ),
+
+  safety:
+    document.getElementById(
+      "safety"
+    ),
+
+  pick:
+    document.getElementById(
+      "pick"
+    ),
+
+  process:
+    document.getElementById(
+      "process"
+    ),
+
+  storage:
+    document.getElementById(
+      "storage"
+    ),
+
+  transportUtil:
+    document.getElementById(
+      "transportUtil"
+    ),
+
+  delivery:
+    document.getElementById(
+      "delivery"
+    ),
+
+  transportReliability:
+    document.getElementById(
+      "transportReliability"
+    )
+
+};
+
+
+
+/* ==========================================================
+   BASELINE
+========================================================== */
+
+
+const baselineInputs = {
+
+  demand:100,
+
+  forecast:85,
+
+  production:100,
+
+  lot:100,
+
+  supplierReliability:96,
+
+  supplierLead:5,
+
+  safety:12,
+
+  pick:140,
+
+  process:5,
+
+  storage:100,
+
+  transportUtil:84,
+
+  delivery:5,
+
+  transportReliability:97
+
+};
+
+
+
+/* ==========================================================
+   HELPERS
+========================================================== */
+
+
+function clamp(
+  value,
+  min,
+  max
+){
+
+  return Math.max(
+    min,
+    Math.min(
+      max,
+      value
+    )
+  );
+
+}
+
+
+function formatNumber(
+  value,
+  digits = 1
+){
+
+  return value.toLocaleString(
+    currentLanguage === "de"
+      ? "de-DE"
+      : "en-US",
+    {
+      minimumFractionDigits:digits,
+      maximumFractionDigits:digits
+    }
+  );
+
+}
+
+
+
+/* ==========================================================
+   SUPPLY CHAIN MODEL
+
+   All formulas are deliberately illustrative.
+========================================================== */
+
+
+function computeMetrics(
+  values
+){
+
+  const demand =
+    values.demand;
+
+  const forecast =
+    values.forecast;
+
+  const production =
+    values.production;
+
+  const lot =
+    values.lot;
+
+  const supplierReliability =
+    values.supplierReliability;
+
+  const supplierLead =
+    values.supplierLead;
+
+  const safety =
+    values.safety;
+
+  const pick =
+    values.pick;
+
+  const process =
+    values.process;
+
+  const storage =
+    values.storage;
+
+  const transportUtil =
+    values.transportUtil;
+
+  const delivery =
+    values.delivery;
+
+  const transportReliability =
+    values.transportReliability;
+
+
+
+  /* ------------------------------------------------------
+     PRODUCTION COVERAGE
+  ------------------------------------------------------ */
+
+  const productionCoverage =
+    clamp(
+      production
+      /
+      demand
+      *
+      100,
+      80,
+      120
+    );
+
+
+  const productionUtilization =
+    clamp(
+      82
+      *
+      demand
+      /
+      production,
+      55,
+      105
+    );
+
+
+
+  /* ------------------------------------------------------
+     MATERIAL AVAILABILITY
+  ------------------------------------------------------ */
+
+  const materialAvailability =
+    clamp(
+
+      supplierReliability
+
+      +
+
+      (
+        safety - 12
+      )
+      *
+      .18
+
+      -
+
+      (
+        supplierLead - 5
+      )
+      *
+      .30,
+
+      85,
+      99.9
+
+    );
+
+
+
+  /* ------------------------------------------------------
+     INVENTORY
+  ------------------------------------------------------ */
+
+  const inventoryIndex =
+
+    100
+
+    *
+
+    (
+      safety / 12
+    )
+
+    *
+
+    (
+      .6
+      +
+      .4
+      *
+      (
+        lot / 100
+      )
+    )
+
+    *
+
+    (
+      1
+      +
+      (
+        100 - forecast
+      )
+      *
+      .003
+    );
+
+
+
+  /* ------------------------------------------------------
+     WAREHOUSE UTILIZATION
+  ------------------------------------------------------ */
+
+  const warehouseUtilization =
+    clamp(
+
+      72
+
+      +
+
+      (
+        inventoryIndex - 104.5
+      )
+      *
+      .15
+
+      -
+
+      (
+        storage - 100
+      )
+      *
+      .50,
+
+      45,
+      105
+
+    );
+
+
+
+  /* ------------------------------------------------------
+     PICKING PERFORMANCE
+  ------------------------------------------------------ */
+
+  const pickingPerformance =
+
+    pick
+
+    *
+
+    (
+      1
+      +
+      process / 100
+    )
+
+    *
+
+    (
+      1
+      -
+      Math.max(
+        0,
+        warehouseUtilization - 90
+      )
+      *
+      .003
+    );
+
+
+
+  /* ------------------------------------------------------
+     SERVICE LEVEL
+  ------------------------------------------------------ */
+
+  const serviceLevel =
+    clamp(
+
+      97.2
+
+      +
+
+      (
+        materialAvailability - 96
+      )
+      *
+      .25
+
+      +
+
+      (
+        productionCoverage - 100
+      )
+      *
+      .12
+
+      +
+
+      (
+        transportReliability - 97
+      )
+      *
+      .25
+
+      +
+
+      (
+        safety - 12
+      )
+      *
+      .06
+
+      -
+
+      Math.max(
+        0,
+        demand - production
+      )
+      *
+      .12
+
+      -
+
+      Math.max(
+        0,
+        warehouseUtilization - 92
+      )
+      *
+      .08,
+
+      85,
+      99.8
+
+    );
+
+
+
+  /* ------------------------------------------------------
+     END TO END LEAD TIME
+  ------------------------------------------------------ */
+
+  const leadTime =
+
+    supplierLead
+
+    +
+
+    2.2
+    *
+    (
+      100 / production
+    )
+
+    +
+
+    .7
+    *
+    (
+      140
+      /
+      pickingPerformance
+    )
+
+    +
+
+    1.5
+    *
+    (
+      5 / delivery
+    )
+
+    +
+
+    Math.max(
+      0,
+      warehouseUtilization - 90
+    )
+    *
+    .03;
+
+
+
+  /* ------------------------------------------------------
+     COST MODEL
+  ------------------------------------------------------ */
+
+
+  const materialCost =
+
+    .62
+
+    *
+
+    (
+      1
+      +
+      (
+        supplierReliability - 96
+      )
+      *
+      .0015
+    );
+
+
+  const productionCost =
+
+    .34
+
+    *
+
+    (
+      82
+      /
+      productionUtilization
+    )
+
+    *
+
+    (
+      1
+      +
+      Math.max(
+        0,
+        productionUtilization - 95
+      )
+      *
+      .012
+    );
+
+
+  const inventoryCost =
+
+    .12
+
+    *
+
+    (
+      inventoryIndex
+      /
+      104.5
+    );
+
+
+  const warehouseCost =
+
+    .22
+
+    *
+
+    (
+      140
+      /
+      pickingPerformance
+    )
+
+    *
+
+    (
+      1
+      +
+      Math.max(
+        0,
+        warehouseUtilization - 90
+      )
+      *
+      .005
+    );
+
+
+  const transportCost =
+
+    .26
+
+    *
+
+    (
+      84
+      /
+      transportUtil
+    )
+
+    *
+
+    (
+      1
+      +
+      (
+        delivery - 5
+      )
+      *
+      .045
+    );
+
+
+  const forecastQualityCost =
+
+    .08
+
+    *
+
+    (
+      1
+      +
+      (
+        100 - forecast
+      )
+      *
+      .008
+    )
+
+    +
+
+    Math.max(
+      0,
+      production - demand
+    )
+    *
+    .0015;
+
+
+
+  const totalCost =
+
+    materialCost
+
+    +
+
+    productionCost
+
+    +
+
+    inventoryCost
+
+    +
+
+    warehouseCost
+
+    +
+
+    transportCost
+
+    +
+
+    forecastQualityCost;
+
+
+
+  return{
+
+    productionCoverage,
+    productionUtilization,
+
+    materialAvailability,
+
+    inventoryIndex,
+
+    warehouseUtilization,
+
+    pickingPerformance,
+
+    serviceLevel,
+
+    leadTime,
+
+    transportCost,
+
+    totalCost
+
+  };
+
+}
+
+
+
+/* ==========================================================
+   BASELINE METRICS
+========================================================== */
+
+
+const baseline =
+  computeMetrics(
+    baselineInputs
+  );
+
+
+
+/* ==========================================================
+   INPUT VALUES
+========================================================== */
+
+
+function getCurrentInputs(){
+
+  return{
+
+    demand:
+      Number(
+        inputs.demand.value
+      ),
+
+    forecast:
+      Number(
+        inputs.forecast.value
+      ),
+
+    production:
+      Number(
+        inputs.production.value
+      ),
+
+    lot:
+      Number(
+        inputs.lot.value
+      ),
+
+    supplierReliability:
+      Number(
+        inputs.supplierReliability.value
+      ),
+
+    supplierLead:
+      Number(
+        inputs.supplierLead.value
+      ),
+
+    safety:
+      Number(
+        inputs.safety.value
+      ),
+
+    pick:
+      Number(
+        inputs.pick.value
+      ),
+
+    process:
+      Number(
+        inputs.process.value
+      ),
+
+    storage:
+      Number(
+        inputs.storage.value
+      ),
+
+    transportUtil:
+      Number(
+        inputs.transportUtil.value
+      ),
+
+    delivery:
+      Number(
+        inputs.delivery.value
+      ),
+
+    transportReliability:
+      Number(
+        inputs.transportReliability.value
+      )
+
+  };
+
+}
+
+
+
+/* ==========================================================
+   SLIDER LABELS
+========================================================== */
+
+
+function updateSliderLabels(){
+
+
+  document
+    .getElementById(
+      "demandValue"
+    )
+    .textContent =
+    inputs.demand.value;
+
+
+  document
+    .getElementById(
+      "forecastValue"
+    )
+    .textContent =
+    inputs.forecast.value
+    + " %";
+
+
+  document
+    .getElementById(
+      "productionValue"
+    )
+    .textContent =
+    inputs.production.value;
+
+
+  document
+    .getElementById(
+      "lotValue"
+    )
+    .textContent =
+    inputs.lot.value;
+
+
+  document
+    .getElementById(
+      "supplierReliabilityValue"
+    )
+    .textContent =
+    formatNumber(
+      Number(
+        inputs.supplierReliability.value
+      ),
+      1
+    )
+    + " %";
+
+
+  document
+    .getElementById(
+      "supplierLeadValue"
+    )
+    .textContent =
+    formatNumber(
+      Number(
+        inputs.supplierLead.value
+      ),
+      1
+    )
+    +
+    (
+      currentLanguage === "de"
+        ? " Tage"
+        : " days"
+    );
+
+
+  document
+    .getElementById(
+      "safetyValue"
+    )
+    .textContent =
+    inputs.safety.value
+    +
+    (
+      currentLanguage === "de"
+        ? " Tage"
+        : " days"
+    );
+
+
+  document
+    .getElementById(
+      "pickValue"
+    )
+    .textContent =
+    inputs.pick.value
+    + " / h";
+
+
+  document
+    .getElementById(
+      "processValue"
+    )
+    .textContent =
+    inputs.process.value
+    + " %";
+
+
+  document
+    .getElementById(
+      "storageValue"
+    )
+    .textContent =
+    inputs.storage.value;
+
+
+  document
+    .getElementById(
+      "transportUtilValue"
+    )
+    .textContent =
+    inputs.transportUtil.value
+    + " %";
+
+
+  document
+    .getElementById(
+      "deliveryValue"
+    )
+    .textContent =
+    inputs.delivery.value
+    +
+    (
+      currentLanguage === "de"
+        ? " / Woche"
+        : " / week"
+    );
+
+
+  document
+    .getElementById(
+      "transportReliabilityValue"
+    )
+    .textContent =
+    formatNumber(
+      Number(
+        inputs.transportReliability.value
+      ),
+      1
+    )
+    + " %";
+
+}
+
+
+
+/* ==========================================================
+   KPI UPDATE
+========================================================== */
+
+
+function updateKPI(
+  valueID,
+  changeID,
+  barID,
+  value,
+  base,
+  unit,
+  digits,
+  higherIsBetter
+){
+
+  const valueElement =
+    document.getElementById(
+      valueID
+    );
+
+
+  const changeElement =
+    document.getElementById(
+      changeID
+    );
+
+
+  const barElement =
+    document.getElementById(
+      barID
+    );
+
+
+  valueElement.textContent =
+
+    formatNumber(
+      value,
+      digits
+    )
+
+    +
+
+    (
+      unit
+        ? " " + unit
+        : ""
+    );
+
+
+  const diff =
+
+    (
+      (
+        value - base
+      )
+      /
+      base
+    )
+    *
+    100;
+
+
+  changeElement.className =
+    "kpi-change";
+
+
+  if(
+    Math.abs(
+      diff
+    )
+    <
+    .05
+  ){
+
+    changeElement.textContent =
+      "Baseline";
+
+    changeElement.classList.add(
+      "neutral"
+    );
+
+  }
+
+  else{
+
+    const sign =
+      diff > 0
+        ? "+"
+        : "";
+
+
+    changeElement.textContent =
+
+      sign
+
+      +
+
+      formatNumber(
+        diff,
+        1
+      )
+
+      +
+
+      " %";
+
+
+    if(
+      higherIsBetter === true
+    ){
+
+      changeElement.classList.add(
+
+        diff >= 0
+          ? "good"
+          : "bad"
+
+      );
+
     }
 
-    * {
-      box-sizing: border-box;
+    else if(
+      higherIsBetter === false
+    ){
+
+      changeElement.classList.add(
+
+        diff <= 0
+          ? "good"
+          : "bad"
+
+      );
+
     }
 
-    html {
-      scroll-behavior: smooth;
+    else{
+
+      changeElement.classList.add(
+        "neutral"
+      );
+
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #fafbfc;
-      line-height: 1.5;
+  }
+
+
+  const width =
+    clamp(
+      50 + diff * 2,
+      12,
+      100
+    );
+
+
+  barElement.style.width =
+    width + "%";
+
+}
+
+
+
+/* ==========================================================
+   SCORE
+========================================================== */
+
+
+function computeScore(
+  metrics
+){
+
+  let score = 100;
+
+
+  /* cost */
+
+  score -=
+    Math.max(
+      0,
+      metrics.totalCost - 1.55
+    )
+    *
+    70;
+
+
+  /* service */
+
+  score -=
+    Math.max(
+      0,
+      98 - metrics.serviceLevel
+    )
+    *
+    8;
+
+
+  /* material */
+
+  score -=
+    Math.max(
+      0,
+      98 - metrics.materialAvailability
+    )
+    *
+    6;
+
+
+  /* lead time */
+
+  score -=
+    Math.max(
+      0,
+      metrics.leadTime - 8.5
+    )
+    *
+    5;
+
+
+  /* warehouse overload */
+
+  score -=
+    Math.max(
+      0,
+      metrics.warehouseUtilization - 88
+    )
+    *
+    2;
+
+
+  /* inventory extremes */
+
+  if(
+    metrics.inventoryIndex < 80
+  ){
+
+    score -=
+      (
+        80 -
+        metrics.inventoryIndex
+      )
+      *
+      .4;
+
+  }
+
+
+  if(
+    metrics.inventoryIndex > 130
+  ){
+
+    score -=
+      (
+        metrics.inventoryIndex
+        -
+        130
+      )
+      *
+      .35;
+
+  }
+
+
+  return Math.round(
+    clamp(
+      score,
+      0,
+      100
+    )
+  );
+
+}
+
+
+
+/* ==========================================================
+   BOTTLENECK ANALYSIS
+========================================================== */
+
+
+function updateBottleneck(
+  metrics,
+  values
+){
+
+  const penalties = {
+
+
+    production:
+
+      Math.max(
+        0,
+        100 -
+        metrics.productionCoverage
+      )
+
+      +
+
+      Math.max(
+        0,
+        metrics.productionUtilization
+        -
+        95
+      ),
+
+
+    material:
+
+      Math.max(
+        0,
+        98 -
+        metrics.materialAvailability
+      )
+      *
+      2.5,
+
+
+    warehouse:
+
+      Math.max(
+        0,
+        160 -
+        metrics.pickingPerformance
+      )
+      /
+      15
+
+      +
+
+      Math.max(
+        0,
+        metrics.warehouseUtilization
+        -
+        88
+      ),
+
+
+    distribution:
+
+      Math.max(
+        0,
+        97.5 -
+        values.transportReliability
+      )
+      *
+      2
+
+      +
+
+      Math.max(
+        0,
+        85 -
+        values.transportUtil
+      )
+      /
+      2
+
+  };
+
+
+  const largest =
+    Object.entries(
+      penalties
+    )
+    .sort(
+      (
+        a,
+        b
+      ) =>
+      b[1] - a[1]
+    )[0][0];
+
+
+  const title =
+    document.getElementById(
+      "bottleneckTitle"
+    );
+
+
+  const text =
+    document.getElementById(
+      "bottleneckText"
+    );
+
+
+  if(
+    largest === "production"
+  ){
+
+    title.textContent =
+      currentLanguage === "de"
+        ? "Produktionsplanung"
+        : "Production Planning";
+
+
+    text.textContent =
+      currentLanguage === "de"
+        ? "Nachfrage und Produktionsplan sind nicht optimal ausbalanciert. Kapazitätsrisiko und Serviceeffekt sollten geprüft werden."
+        : "Demand and production planning are not optimally balanced. Capacity risk and service impact should be reviewed.";
+
+  }
+
+
+  else if(
+    largest === "material"
+  ){
+
+    title.textContent =
+      currentLanguage === "de"
+        ? "Materialwirtschaft"
+        : "Materials Management";
+
+
+    text.textContent =
+      currentLanguage === "de"
+        ? "Materialverfügbarkeit liegt unter dem Zielniveau. Lieferzuverlässigkeit, Beschaffungszeit und Sicherheitsbestand sind die wichtigsten Hebel."
+        : "Material availability is below target. Supplier reliability, lead time and safety stock are the main levers.";
+
+  }
+
+
+  else if(
+    largest === "warehouse"
+  ){
+
+    title.textContent =
+      currentLanguage === "de"
+        ? "Lagerlogistik"
+        : "Warehouse Logistics";
+
+
+    text.textContent =
+      currentLanguage === "de"
+        ? "Pickleistung oder Flächenauslastung begrenzen aktuell den Durchsatz. Layout, Slotting und Prozessstandardisierung sollten geprüft werden."
+        : "Picking performance or space utilization currently limits throughput. Layout, slotting and process standardization should be reviewed.";
+
+  }
+
+
+  else{
+
+    title.textContent =
+      currentLanguage === "de"
+        ? "Distributionslogistik"
+        : "Distribution Logistics";
+
+
+    text.textContent =
+      currentLanguage === "de"
+        ? "Transportauslastung oder Zuverlässigkeit begrenzen die Netzwerkleistung. Lieferfrequenz und Auslastung müssen gemeinsam optimiert werden."
+        : "Transport utilization or reliability limits network performance. Delivery frequency and utilization should be optimized together.";
+
+  }
+
+}
+
+
+
+/* ==========================================================
+   DECISION
+========================================================== */
+
+
+function updateDecision(
+  metrics,
+  score
+){
+
+  const decision =
+    document.getElementById(
+      "decision"
+    );
+
+
+  const text =
+    document.getElementById(
+      "decisionText"
+    );
+
+
+  const reasons =
+    document.getElementById(
+      "decisionReasons"
+    );
+
+
+  if(
+
+    score >= 85
+
+    &&
+
+    metrics.serviceLevel >= 98
+
+    &&
+
+    metrics.materialAvailability >= 98
+
+    &&
+
+    metrics.totalCost <= 1.62
+
+    &&
+
+    metrics.leadTime <= 8.8
+
+    &&
+
+    metrics.warehouseUtilization <= 90
+
+  ){
+
+    decision.textContent =
+      "GO";
+
+    decision.style.color =
+      "#3d745a";
+
+
+    text.textContent =
+      currentLanguage === "de"
+        ? "Das Szenario zeigt eine ausgewogene Verbesserung des Gesamtsystems."
+        : "The scenario shows a balanced improvement across the overall system.";
+
+
+    reasons.innerHTML =
+
+      currentLanguage === "de"
+
+      ? `
+        <li>Lieferfähigkeit und Materialverfügbarkeit stabil</li>
+        <li>Kostenwirkung wirtschaftlich vertretbar</li>
+        <li>Lager und Produktion ohne kritische Überlastung</li>
+        <li>Durchlaufzeit innerhalb des Zielbereichs</li>
+      `
+
+      : `
+        <li>Service and material availability remain stable</li>
+        <li>Cost impact is economically acceptable</li>
+        <li>Warehouse and production remain operationally stable</li>
+        <li>Lead time remains within target</li>
+      `;
+
+  }
+
+
+  else if(
+
+    metrics.serviceLevel < 94
+
+    ||
+
+    metrics.materialAvailability < 93
+
+    ||
+
+    metrics.warehouseUtilization > 98
+
+    ||
+
+    metrics.leadTime > 11.5
+
+  ){
+
+    decision.textContent =
+      "STOP";
+
+    decision.style.color =
+      "#a94442";
+
+
+    text.textContent =
+      currentLanguage === "de"
+        ? "Mindestens ein operativer Grenzwert wird deutlich verletzt. Das Szenario sollte in dieser Form nicht umgesetzt werden."
+        : "At least one operational threshold is materially violated. The scenario should not be implemented in its current form.";
+
+
+    reasons.innerHTML =
+
+      currentLanguage === "de"
+
+      ? `
+        <li>Versorgungs- oder Kapazitätsrisiko kritisch</li>
+        <li>Gesamtsystem nicht ausreichend stabil</li>
+        <li>Grundannahmen oder Maßnahmen neu bewerten</li>
+      `
+
+      : `
+        <li>Service or capacity risk is critical</li>
+        <li>Overall system is not sufficiently stable</li>
+        <li>Reassess assumptions or measures</li>
+      `;
+
+  }
+
+
+  else{
+
+    decision.textContent =
+      "ADAPT";
+
+    decision.style.color =
+      "#b58429";
+
+
+    text.textContent =
+      currentLanguage === "de"
+        ? "Potenzial ist vorhanden, aber mindestens ein Zielkonflikt ist noch nicht ausreichend gelöst."
+        : "There is potential, but at least one trade-off has not yet been sufficiently resolved.";
+
+
+    reasons.innerHTML =
+
+      currentLanguage === "de"
+
+      ? `
+        <li>Größten Engpass priorisieren</li>
+        <li>Betroffenen Stellhebel gezielt verändern</li>
+        <li>Szenario erneut berechnen und Gesamteffekt prüfen</li>
+      `
+
+      : `
+        <li>Prioritize the main bottleneck</li>
+        <li>Adjust the relevant lever</li>
+        <li>Recalculate the scenario and review the overall impact</li>
+      `;
+
+  }
+
+}
+
+
+
+/* ==========================================================
+   CALCULATE
+========================================================== */
+
+
+function calculate(){
+
+  updateSliderLabels();
+
+
+  const values =
+    getCurrentInputs();
+
+
+  const metrics =
+    computeMetrics(
+      values
+    );
+
+
+  /* cost */
+
+  updateKPI(
+    "costKPI",
+    "costChange",
+    "costBar",
+    metrics.totalCost,
+    baseline.totalCost,
+    "€",
+    2,
+    false
+  );
+
+
+  /* service */
+
+  updateKPI(
+    "serviceKPI",
+    "serviceChange",
+    "serviceBar",
+    metrics.serviceLevel,
+    baseline.serviceLevel,
+    "%",
+    1,
+    true
+  );
+
+
+  /* material */
+
+  updateKPI(
+    "materialKPI",
+    "materialChange",
+    "materialBar",
+    metrics.materialAvailability,
+    baseline.materialAvailability,
+    "%",
+    1,
+    true
+  );
+
+
+  /* lead */
+
+  updateKPI(
+    "leadKPI",
+    "leadChange",
+    "leadBar",
+    metrics.leadTime,
+    baseline.leadTime,
+    currentLanguage === "de"
+      ? "Tage"
+      : "days",
+    1,
+    false
+  );
+
+
+  /* inventory */
+
+  updateKPI(
+    "inventoryKPI",
+    "inventoryChange",
+    "inventoryBar",
+    metrics.inventoryIndex,
+    baseline.inventoryIndex,
+    "",
+    0,
+    null
+  );
+
+
+  /* warehouse */
+
+  updateKPI(
+    "warehouseKPI",
+    "warehouseChange",
+    "warehouseBar",
+    metrics.warehouseUtilization,
+    baseline.warehouseUtilization,
+    "%",
+    1,
+    null
+  );
+
+
+  /* picking */
+
+  updateKPI(
+    "pickKPI",
+    "pickChange",
+    "pickBar",
+    metrics.pickingPerformance,
+    baseline.pickingPerformance,
+    "/ h",
+    0,
+    true
+  );
+
+
+  /* transport */
+
+  updateKPI(
+    "transportCostKPI",
+    "transportCostChange",
+    "transportCostBar",
+    metrics.transportCost,
+    baseline.transportCost,
+    "€",
+    2,
+    false
+  );
+
+
+
+  /* FLOW */
+
+  document
+    .getElementById(
+      "flowMaterial"
+    )
+    .textContent =
+    formatNumber(
+      metrics.materialAvailability,
+      1
+    )
+    +
+    " %";
+
+
+  document
+    .getElementById(
+      "flowProduction"
+    )
+    .textContent =
+    formatNumber(
+      metrics.productionUtilization,
+      0
+    )
+    +
+    " %";
+
+
+  document
+    .getElementById(
+      "flowWarehouse"
+    )
+    .textContent =
+    formatNumber(
+      metrics.pickingPerformance,
+      0
+    );
+
+
+  document
+    .getElementById(
+      "flowDistribution"
+    )
+    .textContent =
+    formatNumber(
+      values.transportUtil,
+      0
+    )
+    +
+    " %";
+
+
+  document
+    .getElementById(
+      "flowService"
+    )
+    .textContent =
+    formatNumber(
+      metrics.serviceLevel,
+      1
+    )
+    +
+    " %";
+
+
+
+  /* IMPACT CARDS */
+
+  document
+    .getElementById(
+      "productionUtilImpact"
+    )
+    .textContent =
+    formatNumber(
+      metrics.productionUtilization,
+      1
+    )
+    +
+    " %";
+
+
+  document
+    .getElementById(
+      "materialImpact"
+    )
+    .textContent =
+    formatNumber(
+      metrics.materialAvailability,
+      1
+    )
+    +
+    " %";
+
+
+  document
+    .getElementById(
+      "warehouseImpact"
+    )
+    .textContent =
+    formatNumber(
+      metrics.pickingPerformance,
+      0
+    )
+    +
+    " / h";
+
+
+  document
+    .getElementById(
+      "distributionImpact"
+    )
+    .textContent =
+    formatNumber(
+      values.transportUtil,
+      0
+    )
+    +
+    " %";
+
+
+
+  /* SCORE */
+
+  const score =
+    computeScore(
+      metrics
+    );
+
+
+  document
+    .getElementById(
+      "scoreValue"
+    )
+    .textContent =
+    score;
+
+
+  document
+    .getElementById(
+      "scoreSub"
+    )
+    .textContent =
+
+    score >= 85
+
+      ? (
+          currentLanguage === "de"
+            ? "Ausgewogenes Szenario"
+            : "Balanced scenario"
+        )
+
+      :
+
+      score >= 65
+
+      ? (
+          currentLanguage === "de"
+            ? "Optimierungspotenzial"
+            : "Optimization potential"
+        )
+
+      :
+
+      (
+        currentLanguage === "de"
+          ? "Kritische Zielkonflikte"
+          : "Critical trade-offs"
+      );
+
+
+
+  updateBottleneck(
+    metrics,
+    values
+  );
+
+
+  updateDecision(
+    metrics,
+    score
+  );
+
+}
+
+
+
+/* ==========================================================
+   APPLY SCENARIOS
+========================================================== */
+
+
+function applyScenario(
+  values
+){
+
+  Object.entries(
+    values
+  )
+  .forEach(
+    (
+      [
+        key,
+        value
+      ]
+    ) => {
+
+      if(
+        inputs[key]
+      ){
+
+        inputs[key].value =
+          value;
+
+      }
+
     }
+  );
 
-    a {
-      text-decoration: none;
-      color: inherit;
+
+  calculate();
+
+}
+
+
+
+/* BASELINE */
+
+document
+  .getElementById(
+    "baselinePreset"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      applyScenario(
+        baselineInputs
+      );
+
     }
+  );
 
-    button {
-      font-family: inherit;
+
+
+/* DEMAND SHOCK */
+
+document
+  .getElementById(
+    "stressPreset"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      applyScenario({
+
+        demand:115,
+
+        forecast:80,
+
+        production:105,
+
+        lot:110,
+
+        supplierReliability:94,
+
+        supplierLead:6,
+
+        safety:10,
+
+        pick:135,
+
+        process:3,
+
+        storage:100,
+
+        transportUtil:80,
+
+        delivery:5,
+
+        transportReliability:95
+
+      });
+
     }
+  );
 
-    .container {
-      width: min(1180px, 92%);
-      margin: 0 auto;
+
+
+/* COST FOCUS */
+
+document
+  .getElementById(
+    "costPreset"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      applyScenario({
+
+        demand:105,
+
+        forecast:92,
+
+        production:106,
+
+        lot:110,
+
+        supplierReliability:96,
+
+        supplierLead:5,
+
+        safety:9,
+
+        pick:155,
+
+        process:12,
+
+        storage:105,
+
+        transportUtil:94,
+
+        delivery:4,
+
+        transportReliability:96
+
+      });
+
     }
+  );
 
-    /* NAVIGATION */
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+
+/* SERVICE FOCUS */
+
+document
+  .getElementById(
+    "servicePreset"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      applyScenario({
+
+        demand:108,
+
+        forecast:92,
+
+        production:115,
+
+        lot:90,
+
+        supplierReliability:99,
+
+        supplierLead:4,
+
+        safety:20,
+
+        pick:155,
+
+        process:10,
+
+        storage:105,
+
+        transportUtil:85,
+
+        delivery:6,
+
+        transportReliability:99
+
+      });
+
+    }
+  );
+
+
+
+/* BEST BALANCE */
+
+document
+  .getElementById(
+    "balancePreset"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      applyScenario({
+
+        demand:108,
+
+        forecast:93,
+
+        production:112,
+
+        lot:90,
+
+        supplierReliability:98,
+
+        supplierLead:4,
+
+        safety:14,
+
+        pick:165,
+
+        process:15,
+
+        storage:108,
+
+        transportUtil:90,
+
+        delivery:5,
+
+        transportReliability:98.5
+
+      });
+
+    }
+  );
+
+
+
+/* ==========================================================
+   LIVE INPUT
+========================================================== */
+
+
+Object.values(
+  inputs
+)
+.forEach(
+  input => {
+
+    input.addEventListener(
+      "input",
+      calculate
+    );
+
+  }
+);
+
+
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+
+setLanguage(
+  "de"
+);
+
+
+</script>
+
+
+</body>
+</html>      z-index: 100;
       background: rgba(22, 40, 59, .97);
       backdrop-filter: blur(12px);
       color: white;
